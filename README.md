@@ -6,4 +6,7 @@ A new Flutter project.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
--[Screen](screen/telegram_theme_change.gif)
+-[Screen]
+<ul>
+   <td><img src="/screen/telegram_theme_change.gif" width="200" height="400"></td>
+</ul>
