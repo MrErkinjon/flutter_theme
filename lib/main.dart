@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(ThemeProvider(duration: Duration(milliseconds: 800),initTheme: ThemeData.light(useMaterial3: true).copyWith(primaryColor: Colors.blue,
-  appBarTheme: AppBarTheme(
+  runApp(ThemeProvider(duration: Duration(milliseconds: 400),initTheme: ThemeData.light(useMaterial3: true).copyWith(primaryColor: Colors.blue,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.white,
     systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark
     ),
   )), child: const MyApp()));
@@ -52,14 +54,16 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             child: ThemeSwitcher(
               builder: (context) {
             return AnimatedCrossFade(
-              reverseDuration:Duration(milliseconds: 800),
-              duration: Duration(milliseconds: 800),
+              reverseDuration:Duration(milliseconds: 400),
+              duration: Duration(milliseconds: 400),
               crossFadeState: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark ? CrossFadeState.showFirst : CrossFadeState.showSecond,
               firstChild: GestureDetector(
                 onTap: () {
                   ThemeSwitcher.of(context).changeTheme(theme: ThemeData.light(useMaterial3: true).copyWith(
                     appBarTheme:  AppBarTheme(
+                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                       systemOverlayStyle: SystemUiOverlayStyle(
+                          statusBarColor: Theme.of(context).scaffoldBackgroundColor,
                         statusBarIconBrightness: Brightness.dark
                       ),
                     ),
@@ -74,8 +78,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               secondChild: GestureDetector(
                 onTap: () {
                   ThemeSwitcher.of(context).changeTheme(theme: ThemeData.dark(useMaterial3: true).copyWith(primaryColor: Colors.indigoAccent,
-                  appBarTheme:  AppBarTheme(
+                  appBarTheme:  AppBarTheme(    backgroundColor:Theme.of(context).scaffoldBackgroundColor,
                       systemOverlayStyle: SystemUiOverlayStyle(
+                          statusBarColor: Theme.of(context).scaffoldBackgroundColor,
                       statusBarIconBrightness: Brightness.light
                   ),
                   ),),isReversed: false);
